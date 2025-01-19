@@ -8,22 +8,22 @@ import numpy as np
 tasks = [
     {"name": "Project Initiation", "start_week": 1, "duration_weeks": 1, "resource": "All Members", "color": "skyblue", "progress": 0},
     {"name": "Research Phase", "start_week": 2, "duration_weeks": 2, "resource": "All Members", "color": "limegreen", "progress": 0},
-    {"name": "System Selection & Analysis", "start_week": 4, "duration_weeks": 2, "resource": "All Members", "color": "gold", "progress": 0},
-    {"name": "Design Development", "start_week": 6, "duration_weeks": 2, "resource": "All Members", "color": "orange", "progress": 0},
-    {"name": "Preliminary Design", "start_week": 8, "duration_weeks": 2, "resource": "All Members", "color": "red", "progress": 0},
+    {"name": "System\nSelection & Analysis", "start_week": 3.5, "duration_weeks": 2.5, "resource": "All Members", "color": "gold", "progress": 0},
+    {"name": "Design\nDevelopment", "start_week": 6, "duration_weeks": 2, "resource": "All Members", "color": "orange", "progress": 0},
+    {"name": "Preliminary\nDesign", "start_week": 7, "duration_weeks": 2, "resource": "All Members", "color": "red", "progress": 0},
     {"name": "Final Design", "start_week": 9, "duration_weeks": 2, "resource": "All Members", "color": "purple", "progress": 0},
     {"name": "Final Report", "start_week": 10, "duration_weeks": 2, "resource": "All Members", "color": "blue", "progress": 0},
-    {"name": "Project Presentation", "start_week": 11.5, "duration_weeks": 1.5, "resource": "All Members", "color": "cyan", "progress": 0}
+    {"name": "Project\nPresentation", "start_week": 11.5, "duration_weeks": 1.1, "resource": "All Members", "color": "cyan", "progress": 0}
 ]
 
 # these milestones/deadlines dont need to be changed
 milestones = [
-    {"name": "Project Bid Proposal Deadline", "week": 2, "color": "skyblue"},
-    {"name": "Project Timeline Deadline", "week": 3, "color": "limegreen"},
-    {"name": "Responsibilities Deadline", "week": 4, "color": "gold"},
-    {"name": "Preliminary Design Deadline", "week": 9, "color": "red"},
-    {"name": "Interim Report Deadline", "week": 6, "color": "orange"},
-    {"name": "Final Report Submission Deadline", "week": 12, "color": "blue"},
+    {"name": "Project Bid Proposal Deadline", "week": 2, "color": "skyblue", "date": "13 Jan"},
+    {"name": "Project Timeline Deadline", "week": 3, "color": "limegreen", "date": "20 Jan"},
+    {"name": "Responsibilities Deadline", "week": 4, "color": "gold", "date": "27 Jan"},
+    {"name": "Preliminary Design Deadline", "week": 9, "color": "red", "date": "07 Mar"},
+    {"name": "Interim Report Deadline", "week": 6, "color": "orange", "date": "14 Feb"},
+    {"name": "Final Report Submission Deadline", "week": 12, "color": "blue", "date": "04 Apr"}
 ]
 
 # this basically determines the plot size in pixels
@@ -52,9 +52,10 @@ for i, task in enumerate(tasks):
 
 # this line plots those little colored dots marking our deadlines (see legend for this lower right corner)
 for milestone in milestones:
-        ax.scatter(milestone["week"], len(tasks) + 1, color=milestone["color"], zorder=5)
+    ax.scatter(milestone["week"], len(tasks) + 1, color=milestone["color"], zorder=5)
+    ax.text(milestone["week"], len(tasks) + 1.2, milestone["date"], fontsize=8, ha='center', va='center', color="black")
 
-# if you guys need to edit the axis range foor some reason
+# if you guys need to edit the axis range for some reason
 ax.set_yticks(yticks)
 ax.set_yticklabels(ytick_labels, fontsize=10)
 ax.set_xticks(range(1, 13)) 
@@ -63,8 +64,11 @@ ax.set_xlabel("Timeline (Weeks)", fontsize=12, fontweight='bold')
 ax.set_ylabel("Tasks", fontsize=12, fontweight='bold')
 ax.set_title("Gantt Chart: Ocean Water Desalination Project 2025", fontsize=14)
 
-# lower right legend for those little colored dots - you can edit the format of the entire legend over here
-milestone_legend_elements = [Line2D([0], [0], marker='o', color='w', markerfacecolor=milestone["color"], markersize=10, label=milestone["name"]) for milestone in milestones]
+# updated legend code to include milestone dates
+milestone_legend_elements = [
+    Line2D([0], [0], marker='o', color='w', markerfacecolor=milestone["color"], markersize=10, 
+           label=f"{milestone['name']} ({milestone['date']})") for milestone in milestones
+]
 ax.legend(handles=milestone_legend_elements, loc='lower right', fontsize=9, title="Milestones")
 
 # ignore this shit - background shading and grid interval stuff
