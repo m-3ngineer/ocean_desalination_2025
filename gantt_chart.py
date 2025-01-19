@@ -13,7 +13,7 @@ tasks = [
     {"name": "Preliminary Design", "start_week": 8, "duration_weeks": 2, "resource": "All Members", "color": "red", "progress": 0},
     {"name": "Final Design", "start_week": 9, "duration_weeks": 2, "resource": "All Members", "color": "purple", "progress": 0},
     {"name": "Final Report", "start_week": 10, "duration_weeks": 2, "resource": "All Members", "color": "blue", "progress": 0},
-    {"name": "Project Presentation", "start_week": 12, "duration_weeks": 1, "resource": "All Members", "color": "cyan", "progress": 0}
+    {"name": "Project Presentation", "start_week": 11.5, "duration_weeks": 1.5, "resource": "All Members", "color": "cyan", "progress": 0}
 ]
 
 # these milestones/deadlines dont need to be changed
